@@ -41,6 +41,7 @@ public class BP1_MP1_Tugas1_Rio extends javax.swing.JFrame {
         button5 = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setForeground(java.awt.Color.white);
 
         label1.setText("Kalkulator Sederhana");
 
@@ -50,10 +51,14 @@ public class BP1_MP1_Tugas1_Rio extends javax.swing.JFrame {
 
         label4.setText("Operator");
 
+        button1.setBackground(new java.awt.Color(153, 229, 253));
         button1.setLabel("+");
         button1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 button1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button1MouseEntered(evt);
             }
         });
         button1.addActionListener(new java.awt.event.ActionListener() {
@@ -62,10 +67,14 @@ public class BP1_MP1_Tugas1_Rio extends javax.swing.JFrame {
             }
         });
 
+        button2.setBackground(new java.awt.Color(153, 229, 253));
         button2.setLabel("-");
         button2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 button2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button2MouseEntered(evt);
             }
         });
         button2.addActionListener(new java.awt.event.ActionListener() {
@@ -74,10 +83,14 @@ public class BP1_MP1_Tugas1_Rio extends javax.swing.JFrame {
             }
         });
 
+        button3.setBackground(new java.awt.Color(153, 229, 253));
         button3.setLabel("x");
         button3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 button3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button3MouseEntered(evt);
             }
         });
         button3.addActionListener(new java.awt.event.ActionListener() {
@@ -86,10 +99,14 @@ public class BP1_MP1_Tugas1_Rio extends javax.swing.JFrame {
             }
         });
 
+        button4.setBackground(new java.awt.Color(153, 229, 253));
         button4.setLabel("/");
         button4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 button4MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button4MouseEntered(evt);
             }
         });
         button4.addActionListener(new java.awt.event.ActionListener() {
@@ -100,10 +117,14 @@ public class BP1_MP1_Tugas1_Rio extends javax.swing.JFrame {
 
         label5.setText("Hasil");
 
+        button5.setBackground(new java.awt.Color(153, 229, 253));
         button5.setLabel("Clear");
         button5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 button5MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button5MouseEntered(evt);
             }
         });
 
@@ -197,38 +218,18 @@ public class BP1_MP1_Tugas1_Rio extends javax.swing.JFrame {
 
     private void button1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button1MouseClicked
         // TODO add your handling code here:
-        double bil1, bil2, hasil;
-        bil1 = Double.parseDouble(textField1.getText());
-        bil2 = Double.parseDouble(textField2.getText());
-        hasil = bil1 + bil2;
-        textField3.setText(String.valueOf(hasil));
     }//GEN-LAST:event_button1MouseClicked
 
     private void button2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button2MouseClicked
         // TODO add your handling code here:
-        double bil1, bil2, hasil;
-        bil1 = Double.parseDouble(textField1.getText());
-        bil2 = Double.parseDouble(textField2.getText());
-        hasil = bil1 - bil2;
-        textField3.setText(String.valueOf(hasil));
     }//GEN-LAST:event_button2MouseClicked
 
     private void button3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button3MouseClicked
         // TODO add your handling code here:
-        double bil1, bil2, hasil;
-        bil1 = Double.parseDouble(textField1.getText());
-        bil2 = Double.parseDouble(textField2.getText());
-        hasil = bil1 * bil2;
-        textField3.setText(String.valueOf(hasil));
     }//GEN-LAST:event_button3MouseClicked
 
     private void button4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button4MouseClicked
         // TODO add your handling code here:
-        double bil1, bil2, hasil;
-        bil1 = Double.parseDouble(textField1.getText());
-        bil2 = Double.parseDouble(textField2.getText());
-        hasil = bil1 / bil2;
-        textField3.setText(String.valueOf(hasil));
     }//GEN-LAST:event_button4MouseClicked
 
     private void button5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button5MouseClicked
@@ -237,6 +238,49 @@ public class BP1_MP1_Tugas1_Rio extends javax.swing.JFrame {
         textField2.setText("");
         textField3.setText("");
     }//GEN-LAST:event_button5MouseClicked
+
+    private void button1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button1MouseEntered
+        // TODO add your handling code here:
+        double bil1, bil2, hasil;
+        bil1 = Double.parseDouble(textField1.getText());
+        bil2 = Double.parseDouble(textField2.getText());
+        hasil = bil1 + bil2;
+        textField3.setText(String.valueOf(hasil));
+    }//GEN-LAST:event_button1MouseEntered
+
+    private void button2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button2MouseEntered
+        // TODO add your handling code here:
+        double bil1, bil2, hasil;
+        bil1 = Double.parseDouble(textField1.getText());
+        bil2 = Double.parseDouble(textField2.getText());
+        hasil = bil1 - bil2;
+        textField3.setText(String.valueOf(hasil));
+    }//GEN-LAST:event_button2MouseEntered
+
+    private void button3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button3MouseEntered
+        // TODO add your handling code here:
+        double bil1, bil2, hasil;
+        bil1 = Double.parseDouble(textField1.getText());
+        bil2 = Double.parseDouble(textField2.getText());
+        hasil = bil1 * bil2;
+        textField3.setText(String.valueOf(hasil));
+    }//GEN-LAST:event_button3MouseEntered
+
+    private void button4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button4MouseEntered
+        // TODO add your handling code here:
+        double bil1, bil2, hasil;
+        bil1 = Double.parseDouble(textField1.getText());
+        bil2 = Double.parseDouble(textField2.getText());
+        hasil = bil1 / bil2;
+        textField3.setText(String.valueOf(hasil));
+    }//GEN-LAST:event_button4MouseEntered
+
+    private void button5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button5MouseEntered
+        // TODO add your handling code here:
+        textField1.setText("");
+        textField2.setText("");
+        textField3.setText("");
+    }//GEN-LAST:event_button5MouseEntered
 
     /**
      * @param args the command line arguments
