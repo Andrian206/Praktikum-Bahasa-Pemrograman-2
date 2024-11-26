@@ -5,10 +5,10 @@ public class BP1_M2_P1_Rio extends Applet {
 
     @Override
     public void init() {
-        // TODO start asynchronous download of heavy resources
+    
     }
 
-    // TODO overwrite start(), stop() and destroy() methods
+    
     @Override
     public void paint(Graphics g){
         Font f = new Font("Comic Sans MS", Font.BOLD, 20);
