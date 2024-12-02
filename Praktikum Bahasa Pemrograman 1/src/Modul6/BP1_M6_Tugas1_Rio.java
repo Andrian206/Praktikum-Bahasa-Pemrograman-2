@@ -2,20 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Modul4;
+package Modul6;
 
-import javax.swing.JOptionPane;
+import Modul4.*;
+import java.sql.*;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Pongo
  */
-public class BP1_M4_T1_Rio extends javax.swing.JFrame {
+public class BP1_M6_Tugas1_Rio extends javax.swing.JFrame {
 
     /**
      * Creates new form BP1_M4_P1_Rio
      */
-    public BP1_M4_T1_Rio() {
+    public BP1_M6_Tugas1_Rio() {
         initComponents();
     }
     
@@ -27,6 +30,9 @@ public class BP1_M4_T1_Rio extends javax.swing.JFrame {
         if (user.equals("admin") && pass.equals("admin123")) {
             JOptionPane.showMessageDialog(null, "Login Sukses Sebagai " + user, 
             "Login Message", JOptionPane.INFORMATION_MESSAGE);
+            BP1_M6_P2_Rio fm = new BP1_M6_P2_Rio();
+            fm.setVisible(true);
+            this.dispose();
         } 
         else if (user.equals("")) {
             JOptionPane.showMessageDialog(null, "Username harus di isi!", 
@@ -183,14 +189,18 @@ public class BP1_M4_T1_Rio extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BP1_M4_T1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BP1_M6_Tugas1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BP1_M4_T1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BP1_M6_Tugas1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BP1_M4_T1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BP1_M6_Tugas1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BP1_M4_T1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BP1_M6_Tugas1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -200,7 +210,7 @@ public class BP1_M4_T1_Rio extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new BP1_M4_T1_Rio().setVisible(true);
+                new BP1_M6_Tugas1_Rio().setVisible(true);
             }
         });
     }
