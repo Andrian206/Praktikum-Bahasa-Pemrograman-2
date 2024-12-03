@@ -12,12 +12,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Pongo
  */
-public class BP1_M8_P1_Rio extends javax.swing.JFrame {
+public class BP1_M8_PT3_4_Rio extends javax.swing.JFrame {
     private Object JTable1;
     Statement st;
     ResultSet rs;
     BP1_M8_P1 BP1_M8_P1;
-    public BP1_M8_P1_Rio() {
+    public BP1_M8_PT3_4_Rio() {
         BP1_M8_P1 k = new BP1_M8_P1();
         initComponents();
         load_data();
@@ -75,7 +75,6 @@ public class BP1_M8_P1_Rio extends javax.swing.JFrame {
                 + jTextArea2.getText() + "')";
     
             st.execute(sql);
-            load_data();
         } catch (SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
@@ -297,7 +296,7 @@ public class BP1_M8_P1_Rio extends javax.swing.JFrame {
                 JOptionPane.QUESTION_MESSAGE, null, null, null);
         if (close == JOptionPane.YES_OPTION){
             JOptionPane.showMessageDialog(null, "Data Mahasiswa Berhasil Di Input");
-            this.dispose();
+            load_data();
         }
         if (close == JOptionPane.NO_OPTION){
             JOptionPane.showMessageDialog(null, "Data Mahasiswa Gagal Di Input");
@@ -331,10 +330,10 @@ public class BP1_M8_P1_Rio extends javax.swing.JFrame {
                 JOptionPane.QUESTION_MESSAGE, null, null, null);
         if (close == JOptionPane.YES_OPTION){
             JOptionPane.showMessageDialog(null, "Data Mahasiswa Berhasil Di Update!");
-            this.dispose();
+            load_data();
         }
         if (close == JOptionPane.NO_OPTION){
-            JOptionPane.showMessageDialog(null, "Data Mahasiswa Gagal Di Input");
+            JOptionPane.showMessageDialog(null, "Data Mahasiswa Gagal Di Update");
             this.dispose();
         }
     }//GEN-LAST:event_jButton2MouseClicked
@@ -348,7 +347,18 @@ public class BP1_M8_P1_Rio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Data Mahasiswa Berhasil Di Hapus!");
         } catch (SQLException e){
             JOptionPane.showMessageDialog(null, e);
-        }     
+        }   
+        clear_data();
+        int close = JOptionPane.showOptionDialog(this, "Apakah anda ingin menghapus data?", "", JOptionPane.YES_NO_OPTION, 
+                JOptionPane.QUESTION_MESSAGE, null, null, null);
+        if (close == JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, "Data Mahasiswa Berhasil Di Hapus!");
+            load_data();
+        }
+        if (close == JOptionPane.NO_OPTION){
+            JOptionPane.showMessageDialog(null, "Data Mahasiswa Gagal Di Hapus");
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton3MouseClicked
 
     /**
@@ -368,21 +378,35 @@ public class BP1_M8_P1_Rio extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BP1_M8_P1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BP1_M8_PT3_4_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BP1_M8_P1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BP1_M8_PT3_4_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BP1_M8_P1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BP1_M8_PT3_4_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BP1_M8_P1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BP1_M8_PT3_4_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BP1_M8_P1_Rio().setVisible(true);
+                new BP1_M8_PT3_4_Rio().setVisible(true);
             }
         });
     }

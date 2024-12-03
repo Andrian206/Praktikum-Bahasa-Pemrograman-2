@@ -12,12 +12,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Pongo
  */
-public class BP1_M8_P1_Rio extends javax.swing.JFrame {
+public class BP1_M8_PT1_2_Rio extends javax.swing.JFrame {
     private Object JTable1;
     Statement st;
     ResultSet rs;
     BP1_M8_P1 BP1_M8_P1;
-    public BP1_M8_P1_Rio() {
+    public BP1_M8_PT1_2_Rio() {
         BP1_M8_P1 k = new BP1_M8_P1();
         initComponents();
         load_data();
@@ -368,21 +368,27 @@ public class BP1_M8_P1_Rio extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BP1_M8_P1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BP1_M8_PT1_2_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BP1_M8_P1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BP1_M8_PT1_2_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BP1_M8_P1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BP1_M8_PT1_2_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BP1_M8_P1_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BP1_M8_PT1_2_Rio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BP1_M8_P1_Rio().setVisible(true);
+                new BP1_M8_PT1_2_Rio().setVisible(true);
             }
         });
     }
