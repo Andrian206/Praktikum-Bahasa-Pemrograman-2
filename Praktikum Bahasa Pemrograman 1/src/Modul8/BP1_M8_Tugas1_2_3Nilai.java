@@ -128,7 +128,6 @@ public class BP1_M8_Tugas1_2_3Nilai extends javax.swing.JFrame {
             st = BP1_M8_P1.con.createStatement();
             String sql_delete = "DELETE FROM nilai WHERE nim = '" + jTextField5.getText() + "'";
             st.executeUpdate(sql_delete);
-            JOptionPane.showMessageDialog(null, "Data Nilai Berhasil Di Hapus!");
         } catch (SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }  

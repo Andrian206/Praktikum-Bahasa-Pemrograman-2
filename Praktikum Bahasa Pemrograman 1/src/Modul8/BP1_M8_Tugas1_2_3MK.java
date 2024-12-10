@@ -98,7 +98,6 @@ public class BP1_M8_Tugas1_2_3MK extends javax.swing.JFrame {
             st = BP1_M8_P1.con.createStatement();
             String sql_delete = "DELETE FROM matakuliah WHERE kodemk = '" + jTextField1.getText() + "'";
             st.executeUpdate(sql_delete);
-            JOptionPane.showMessageDialog(null, "Data Mata Kuliah Berhasil Di Hapus!");
         } catch (SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }  
