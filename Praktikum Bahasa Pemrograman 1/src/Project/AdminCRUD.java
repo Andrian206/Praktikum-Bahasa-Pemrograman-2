@@ -157,6 +157,7 @@ public class AdminCRUD extends javax.swing.JFrame {
         jTextField4.setText("");
         jTextField5.setText("");
         jTextField6.setText("");
+        jTextField7.setText("");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -412,6 +413,7 @@ public class AdminCRUD extends javax.swing.JFrame {
                 JOptionPane.QUESTION_MESSAGE, null, null, null);
         if (close == JOptionPane.YES_OPTION){
             JOptionPane.showMessageDialog(null, "Media Berhasil Di Input");
+            Load();
         }
         if (close == JOptionPane.NO_OPTION){
             JOptionPane.showMessageDialog(null, "Media Gagal Di Input");

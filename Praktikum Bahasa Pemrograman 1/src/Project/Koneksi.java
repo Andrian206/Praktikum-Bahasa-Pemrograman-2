@@ -29,6 +29,9 @@ public class Koneksi {
             System.out.println("" + e.getLocalizedMessage());
         }
     }
+    public static Connection getKoneksi() {
+        return con;
+    }
     public static void main(String[] args){
         Koneksi k = new Koneksi();
     }

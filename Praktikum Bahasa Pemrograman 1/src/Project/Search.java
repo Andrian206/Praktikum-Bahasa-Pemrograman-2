@@ -19,7 +19,7 @@ public class Search extends javax.swing.JFrame {
         Load();
     }
     private void Load(){
-        Object header[] = {"ID", "Judul", "Jenis", "Genre", "Episode", "Status", "Rating", "Rilis", "Author", "Studio"};
+        Object header[] = {"Judul", "Jenis", "Genre", "Episode", "Status", "Rating", "Rilis", "Author", "Studio"};
         DefaultTableModel data = new DefaultTableModel(null, header);
         jTable1.setModel(data);
         String sql = "SELECT ID_Animanga, Judul, Jenis, Genre, Status, Episode, Rating, Rilis, Author, Studio FROM animanga";
@@ -36,13 +36,49 @@ public class Search extends javax.swing.JFrame {
                 String k7 = rs.getString(7);
                 String k8 = rs.getString(8);
                 String k9 = rs.getString(9);
-                String k10 = rs.getString(10);
                 
-                String k[] = {k1, k2, k3, k4, k5, k6, k7, k8, k9, k10};
+                String k[] = {k1, k2, k3, k4, k5, k6, k7, k8, k9};
                 data.addRow(k);
             }
         } catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    private void Search(){
+        DefaultTableModel data = (DefaultTableModel) jTable1.getModel();
+        data.setRowCount(0);
+
+        String sql = "SELECT Judul, Jenis, Genre, Status, Episode, Rating, Rilis, Author, Studio FROM animanga "
+               + "WHERE (Jenis = ? OR ? = 'All') "
+               + "AND (Genre LIKE ? OR ? = 'All') ";
+
+        try (PreparedStatement ps = Koneksi.getKoneksi().prepareStatement(sql)) {
+            String Jenis = jComboBox1.getSelectedItem().toString();
+            String Genre = jComboBox2.getSelectedItem().toString();
+
+            ps.setString(1, Jenis);
+            ps.setString(2, Jenis);
+            ps.setString(3, "%" + Genre + "%");
+            ps.setString(4, Genre);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String k1 = rs.getString(1);
+                String k2 = rs.getString(2);
+                String k3 = rs.getString(3);
+                String k4 = rs.getString(4);
+                String k5 = rs.getString(5);
+                String k6 = rs.getString(6);
+                String k7 = rs.getString(7);
+                String k8 = rs.getString(8);
+                String k9 = rs.getString(9);
+
+                String[] k = {k1, k2, k3, k4, k5, k6, k7, k8, k9};
+                data.addRow(k);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
     /**
@@ -60,10 +96,8 @@ public class Search extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -86,18 +120,12 @@ public class Search extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel4.setText("Genre");
 
-        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel6.setText("Status");
-
         jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Anime", "Manga", "Manhwa", "Manhua" }));
         jComboBox1.setToolTipText("");
 
         jComboBox2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Action", "Adventure", "Comedy", "Drama", "Fantasy", "Harem", "Horror", "Isekai", "Leveling", "Music", "Oneshot", "Psychological", "Romance", "School", "Seinen", "Shoujo", "Shounen", "Slice of Life", "Sports", "Survival" }));
-
-        jComboBox3.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Ongoing", "Completed", "Hiatus" }));
 
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jButton1.setText("Search");
@@ -130,16 +158,13 @@ public class Search extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, 541, Short.MAX_VALUE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
@@ -157,14 +182,10 @@ public class Search extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -172,6 +193,7 @@ public class Search extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        Search();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -216,11 +238,9 @@ public class Search extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
