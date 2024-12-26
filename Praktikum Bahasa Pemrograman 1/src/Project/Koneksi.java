@@ -24,7 +24,7 @@ public class Koneksi {
         try{
             Class.forName(driver).newInstance();
             con = DriverManager.getConnection(url, id, pass);
-            JOptionPane.showMessageDialog(null, "Database Berhasil Terkoneksi!");
+            JOptionPane.showMessageDialog(null, "Animanga Berhasil Terkoneksi!");
         } catch(Exception e){
             System.out.println("" + e.getLocalizedMessage());
         }

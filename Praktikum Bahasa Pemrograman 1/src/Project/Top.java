@@ -8,21 +8,22 @@ import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class Search extends javax.swing.JFrame {
+public class Top extends javax.swing.JFrame {
     private Object jTable11;
     Koneksi Koneksi;
     Statement st;
     ResultSet rs;
-    public Search() {
+    public Top() {
         Koneksi k = new Koneksi();
         initComponents();
         Load();
+        Search();
     }
     private void Load(){
         Object header[] = {"Judul", "Jenis", "Genre", "Episode", "Status", "Rating", "Rilis", "Author", "Studio"};
         DefaultTableModel data = new DefaultTableModel(null, header);
         jTable1.setModel(data);
-        String sql = "SELECT Judul, Jenis, Genre, Status, Episode, Rating, Rilis, Author, Studio FROM animanga";
+        String sql = "SELECT ID_Animanga, Judul, Jenis, Genre, Status, Episode, Rating, Rilis, Author, Studio FROM animanga";
         try{
             st = Koneksi.con.createStatement();
             rs = st.executeQuery(sql);
@@ -52,19 +53,20 @@ public class Search extends javax.swing.JFrame {
         String sql = "SELECT Judul, Jenis, Genre, Status, Episode, Rating, Rilis, Author, Studio FROM animanga "
                + "WHERE (Jenis = ? OR ? = 'All') "
                + "AND (Genre LIKE ? OR ? = 'All') "
-               + "AND (Judul LIKE ? OR Author LIKE ? OR Studio LIKE ?)";
+               + "AND (Rilis LIKE ? OR ? = 'All') "
+               + "ORDER BY CAST(Rating AS DECIMAL(3,1)) DESC";
 
         try (PreparedStatement ps = Koneksi.getKoneksi().prepareStatement(sql)) {
             String Jenis = jComboBox1.getSelectedItem().toString();
             String Genre = jComboBox2.getSelectedItem().toString();
+            String Rilis = jTextField1.getText();
 
             ps.setString(1, Jenis);
             ps.setString(2, Jenis);
             ps.setString(3, "%" + Genre + "%");
             ps.setString(4, Genre);
-            ps.setString(5, "%" + SearchKey + "%");
-            ps.setString(6, "%" + SearchKey + "%");
-            ps.setString(7, "%" + SearchKey + "%");
+            ps.setString(5, "%" + Rilis + "%");
+            ps.setString(6, Rilis);
 
             ResultSet rs = ps.executeQuery();
 
@@ -118,7 +120,7 @@ public class Search extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Pencarian Animanga");
+        jLabel1.setText("Top Animanga ");
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setText("Jenis");
@@ -157,7 +159,7 @@ public class Search extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable1);
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel2.setText("Search");
+        jLabel2.setText("Rilis");
 
         jTextField1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -176,11 +178,10 @@ public class Search extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(118, 118, 118)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -206,8 +207,8 @@ public class Search extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -245,14 +246,26 @@ public class Search extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Top.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Top.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Top.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Top.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -261,7 +274,7 @@ public class Search extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Search().setVisible(true);
+                new Top().setVisible(true);
             }
         });
     }

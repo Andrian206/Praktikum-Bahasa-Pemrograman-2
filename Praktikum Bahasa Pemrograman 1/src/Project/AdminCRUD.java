@@ -208,7 +208,7 @@ public class AdminCRUD extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Manajemen Media");
+        jLabel1.setText("Manajemen Animanga");
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel2.setText("Judul");
@@ -409,14 +409,14 @@ public class AdminCRUD extends javax.swing.JFrame {
         // TODO add your handling code here:
         Create();
         Clear();
-        int close = JOptionPane.showOptionDialog(this, "Apakah anda yakin menginput Media?", "", JOptionPane.YES_NO_OPTION, 
+        int close = JOptionPane.showOptionDialog(this, "Apakah anda yakin menginput Data?", "", JOptionPane.YES_NO_OPTION, 
                 JOptionPane.QUESTION_MESSAGE, null, null, null);
         if (close == JOptionPane.YES_OPTION){
-            JOptionPane.showMessageDialog(null, "Media Berhasil Di Input");
+            JOptionPane.showMessageDialog(null, "Data Berhasil Di Input");
             Load();
         }
         if (close == JOptionPane.NO_OPTION){
-            JOptionPane.showMessageDialog(null, "Media Gagal Di Input");
+            JOptionPane.showMessageDialog(null, "Data Gagal Di Input");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -424,14 +424,14 @@ public class AdminCRUD extends javax.swing.JFrame {
         // TODO add your handling code here:
         Update();
         Clear();
-        int close = JOptionPane.showOptionDialog(this, "Apakah anda ingin mengupdate Media?", "", JOptionPane.YES_NO_OPTION, 
+        int close = JOptionPane.showOptionDialog(this, "Apakah anda ingin mengupdate Data?", "", JOptionPane.YES_NO_OPTION, 
                 JOptionPane.QUESTION_MESSAGE, null, null, null);
         if (close == JOptionPane.YES_OPTION){
-            JOptionPane.showMessageDialog(null, "Media Berhasil Di Update!");
+            JOptionPane.showMessageDialog(null, "Data Berhasil Di Update!");
             Load();
         }
         if (close == JOptionPane.NO_OPTION){
-            JOptionPane.showMessageDialog(null, "Media Gagal Di Update");
+            JOptionPane.showMessageDialog(null, "Data Gagal Di Update");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -439,14 +439,14 @@ public class AdminCRUD extends javax.swing.JFrame {
         // TODO add your handling code here:
         Delete(); 
         Clear();
-        int close = JOptionPane.showOptionDialog(this, "Apakah anda ingin menghapus data?", "", JOptionPane.YES_NO_OPTION, 
+        int close = JOptionPane.showOptionDialog(this, "Apakah anda ingin menghapus Data?", "", JOptionPane.YES_NO_OPTION, 
                 JOptionPane.QUESTION_MESSAGE, null, null, null);
         if (close == JOptionPane.YES_OPTION){
-            JOptionPane.showMessageDialog(null, "Media Berhasil Di Hapus!");
+            JOptionPane.showMessageDialog(null, "Data Berhasil Di Hapus!");
             Load();
         }
         if (close == JOptionPane.NO_OPTION){
-            JOptionPane.showMessageDialog(null, "Media Gagal Di Hapus");
+            JOptionPane.showMessageDialog(null, "Data Gagal Di Hapus");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
