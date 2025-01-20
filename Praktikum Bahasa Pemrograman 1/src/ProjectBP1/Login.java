@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Project;
+package ProjectBP1;
 
+import Project.*;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -28,148 +29,98 @@ public class Login extends javax.swing.JFrame {
         Koneksi = new Koneksi();
     }
     
-    private void LoginUser() {
-        String User = jTextField1.getText();
-        String Pass = jTextField2.getText();
-        boolean userExists = false;
-        boolean loginSuccess = false;
-
-         try {
-             st = Koneksi.con.createStatement();
-             rs = st.executeQuery("SELECT username, password FROM user");
-
-             while (rs.next()) {
-                 String Username = rs.getString("Username");
-                 String Password = rs.getString("Password");
-                 
-                 if (User.equals(Username)) {
-                    userExists = true; // Username ditemukan
-                    if (Pass.equals(Password)) {   
-                        loginSuccess = true; // Username dan password cocok
-                    }
-                    break;
-                 }
-             }
-         }catch (Exception e) {
-             JOptionPane.showMessageDialog(null, e);
-         }
-
-        // Validasi 
-        if (User.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Username harus diisi", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (Pass.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Password harus diisi", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (loginSuccess) {
-            JOptionPane.showMessageDialog(null, "Login Sukses Sebagai " + User, "Login", JOptionPane.INFORMATION_MESSAGE);
-            new NavigasiUser().setVisible(true);
-            this.dispose();
-        } else if (userExists) {
-            JOptionPane.showMessageDialog(null, "Password salah", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "Username tidak ditemukan", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    
     private void LoginAdmin() {
-        String User = jTextField1.getText();
-        String Pass = jTextField2.getText();
-        boolean userExists = false;
-        boolean loginSuccess = false;
+    String User = jTextField1.getText();
+    String Pass = jTextField2.getText();
+    boolean userExists = false;
+    boolean loginSuccess = false;
 
-        try {
-            st = Koneksi.con.createStatement();
-            rs = st.executeQuery("SELECT username, password FROM admin");
-
-            while (rs.next()) {
-                String Username = rs.getString("Username");
-                String Password = rs.getString("Password");
-
-                if (User.equals(Username)) {
-                    userExists = true; // Username ditemukan
-                    if (Pass.equals(Password)) {
-                        loginSuccess = true; // Username dan password cocok
-                    }
-                    break;
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-        // Validasi 
-        if (User.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Username harus diisi", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (Pass.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Password harus diisi", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (loginSuccess) {
-            JOptionPane.showMessageDialog(null, "Login Sukses Sebagai " + User, "Login", JOptionPane.INFORMATION_MESSAGE);
-            new NavigasiAdmin().setVisible(true);
-            this.dispose();
-        } else if (userExists) {
-            JOptionPane.showMessageDialog(null, "Password salah", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "Username tidak ditemukan", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
- private void Registrasi() {
     try {
         st = Koneksi.con.createStatement();
+        rs = st.executeQuery("SELECT username, password FROM admin WHERE username = '" + User + "'");
 
-        // Validasi input
-        if (jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Username dan Password harus diisi.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+        if (rs.next()) {
+            userExists = true;
+            if (Pass.equals(rs.getString("password"))) {
+                loginSuccess = true;
+            }
         }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e);
+    }
 
-        // Validasi ComboBox
-        String level = (String) jComboBox1.getSelectedItem();
-        String sql = "";
-
-        if (level.equals("User")) {
-            sql = "INSERT INTO user (Username, Password) VALUES ('" 
-                + jTextField1.getText() + "', '" + jTextField2.getText() + "')";
-        } else if (level.equals("Admin")) {
-            sql = "INSERT INTO admin (Username, Password) VALUES ('" 
-                + jTextField1.getText() + "', '" + jTextField2.getText() + "')";
-        } else {
-            JOptionPane.showMessageDialog(this, "Level tidak valid.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Konfirmasi Simpan Data
-        int Opsi = JOptionPane.showConfirmDialog(this, "Apakah Anda Akan Menyimpan Data?", "Konfirmasi",
-            JOptionPane.YES_NO_OPTION);
-
-        if (Opsi == JOptionPane.YES_OPTION) {
-            st.execute(sql);
-            JOptionPane.showMessageDialog(this, "Data berhasil disimpan.");
-            Clear(); // Bersihkan inputan setelah data disimpan
-        } else {
-            JOptionPane.showMessageDialog(this, "Data tidak disimpan.");
-        }
-
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    if (User.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Username harus diisi", "Error", JOptionPane.ERROR_MESSAGE);
+    } else if (Pass.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Password harus diisi", "Error", JOptionPane.ERROR_MESSAGE);
+    } else if (loginSuccess) {
+        JOptionPane.showMessageDialog(null, "Login Sukses Sebagai " + User, "Login", JOptionPane.INFORMATION_MESSAGE);
+        new HomeAdmin().setVisible(true);
+        this.dispose();
+    } else if (userExists) {
+        JOptionPane.showMessageDialog(null, "Password salah", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(null, "Username tidak ditemukan", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
 
+private void LoginUser() {
+    String User = jTextField1.getText();
+    String Pass = jTextField2.getText();
+    boolean userExists = false;
+    boolean loginSuccess = false;
 
-    
-    public void Clear(){
-        jTextField1.setText("");
-        jTextField2.setText("");
-    }
+    try {
+        st = Koneksi.con.createStatement();
+        rs = st.executeQuery("SELECT username, password FROM user WHERE username = '" + User + "'");
 
-    private void Login() {
-        String level = (String) jComboBox1.getSelectedItem();
-        if (level.equals("Admin")) {
-            LoginAdmin();
-        } else {
-            LoginUser();
+        if (rs.next()) {
+            userExists = true;
+            if (Pass.equals(rs.getString("password"))) {
+                loginSuccess = true;
+            }
         }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e);
     }
+
+    if (User.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Username harus diisi", "Error", JOptionPane.ERROR_MESSAGE);
+    } else if (Pass.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Password harus diisi", "Error", JOptionPane.ERROR_MESSAGE);
+    } else if (loginSuccess) {
+        JOptionPane.showMessageDialog(null, "Login Sukses Sebagai " + User, "Login", JOptionPane.INFORMATION_MESSAGE);
+        new HomeUser().setVisible(true);
+        this.dispose();
+    } else if (userExists) {
+        JOptionPane.showMessageDialog(null, "Password salah", "Error", JOptionPane.ERROR_MESSAGE);
+        new Register().setVisible(true);
+        this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(null, "Username tidak ditemukan", "Error", JOptionPane.ERROR_MESSAGE);
+        new Register().setVisible(true);
+        this.dispose();
+    }
+}
+
+private void Login() {
+    String level = (String) jComboBox1.getSelectedItem();
+
+    if (level.equals("Admin")) {
+        LoginAdmin();
+    } else if (level.equals("User")) {
+        LoginUser();
+    } else if (level.equals("Guest")) {
+        new HomeGuest().setVisible(true);
+        this.dispose();
+    }
+}
+
+public void Clear() {
+    jTextField1.setText("");
+    jTextField2.setText("");
+}
+
     
 
     /**
@@ -196,7 +147,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(java.awt.Color.gray);
 
         Login.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        Login.setText("Register");
+        Login.setText("Login");
         Login.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LoginMouseClicked(evt);
@@ -206,12 +157,17 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Form Register");
+        jLabel1.setText("Login");
 
         jTextField1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
 
         jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "User" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "User", "Guest" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jTextField2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
 
@@ -291,6 +247,15 @@ public class Login extends javax.swing.JFrame {
         Login();
     }//GEN-LAST:event_LoginMouseClicked
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        String level = (String) jComboBox1.getSelectedItem();
+        if (level.equals("Guest")) {
+        new HomeGuest().setVisible(true);
+        this.dispose();
+    }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -316,6 +281,10 @@ public class Login extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
